@@ -26,6 +26,8 @@
 		AB76F7A4289ACDB200822304 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB76F794289ACDB200822304 /* NotificationsView.swift */; };
 		AB76F7A5289ACDB200822304 /* SpacesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB76F795289ACDB200822304 /* SpacesView.swift */; };
 		AB76F7A6289ACDB200822304 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB76F796289ACDB200822304 /* ContentView.swift */; };
+		AB76F7A8289B112B00822304 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB76F7A7289B112B00822304 /* LoginView.swift */; };
+		AB76F7AA289B12D400822304 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB76F7A9289B12D400822304 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		AB76F794289ACDB200822304 /* NotificationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		AB76F795289ACDB200822304 /* SpacesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacesView.swift; sourceTree = "<group>"; };
 		AB76F796289ACDB200822304 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AB76F7A7289B112B00822304 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AB76F7A9289B12D400822304 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,8 @@
 		AB76F78E289ACDB200822304 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AB76F7A9289B12D400822304 /* SignUpView.swift */,
+				AB76F7A7289B112B00822304 /* LoginView.swift */,
 				AB76F796289ACDB200822304 /* ContentView.swift */,
 				AB76F792289ACDB200822304 /* HomeView.swift */,
 				AB76F790289ACDB200822304 /* SearchView.swift */,
@@ -211,6 +217,7 @@
 				AB76F7A1289ACDB200822304 /* ProfileView.swift in Sources */,
 				AB76F797289ACDB200822304 /* NewTweetButton.swift in Sources */,
 				AB76F79E289ACDB200822304 /* View.swift in Sources */,
+				AB76F7AA289B12D400822304 /* SignUpView.swift in Sources */,
 				AB76F7A3289ACDB200822304 /* MessagesView.swift in Sources */,
 				AB76F79D289ACDB200822304 /* TweetField.swift in Sources */,
 				AB76F7A4289ACDB200822304 /* NotificationsView.swift in Sources */,
@@ -218,6 +225,7 @@
 				AB76F7A5289ACDB200822304 /* SpacesView.swift in Sources */,
 				AB76F79C289ACDB200822304 /* SideMenu.swift in Sources */,
 				AB76F799289ACDB200822304 /* SideButton.swift in Sources */,
+				AB76F7A8289B112B00822304 /* LoginView.swift in Sources */,
 				AB76F777289ACD9200822304 /* SwifterApp.swift in Sources */,
 				AB76F7A6289ACDB200822304 /* ContentView.swift in Sources */,
 				AB76F79F289ACDB200822304 /* NewTweetView.swift in Sources */,
@@ -357,8 +365,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -368,7 +376,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -386,8 +394,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -397,7 +405,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
