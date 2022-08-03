@@ -68,6 +68,7 @@ struct SignUpView: View {
                 Button("Log in") {
                     showingLogin.toggle()
                 }
+                .foregroundColor(.orange)
             }
             .font(.subheadline)
         }
