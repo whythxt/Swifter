@@ -6,13 +6,24 @@
 //
 
 import Firebase
-import Foundation
+import FirebaseStorage
+import SwiftUI
 
 class AuthViewModel: ObservableObject {
     @Published var user: FirebaseAuth.User?
     
+    @Published var name = ""
+    @Published var email = ""
+    @Published var password = ""
+    @Published var username = ""
+    
+    @Published var showingLogin = false
+    
     @Published var errorMessage = ""
     @Published var showingError = false
+    
+    @Published var showingImagePicker = false
+    @Published var image: UIImage?
     
     init() {
         self.user = Auth.auth().currentUser
@@ -28,13 +39,7 @@ class AuthViewModel: ObservableObject {
             
             guard let user = result?.user else { return }
             self.user = user
-            
-            let data = ["name": name, "email": email, "username": username, "uid": user.uid]
-            
-            Firestore.firestore()
-                .collection("users")
-                .document(user.uid)
-                .setData(data)
+            self.persistImageToStorage()
         }
     }
     
@@ -47,7 +52,9 @@ class AuthViewModel: ObservableObject {
             }
             
             guard let user = result?.user else { return }
+            
             self.user = user
+            self.clearInput()
         }
     }
     
@@ -58,5 +65,53 @@ class AuthViewModel: ObservableObject {
         } catch {
             print(error.localizedDescription)
         }
+    }
+    
+    private func persistImageToStorage() {
+        guard let uid = user?.uid else { return }
+        
+        let ref = Storage.storage().reference(withPath: uid)
+        
+        guard let imageData = self.image?.jpegData(compressionQuality: 0.5) else { return }
+
+        ref.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            ref.downloadURL { url, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                guard let url = url else { return }
+                self.storeUserInformation(imageURL: url)
+            }
+        }
+    }
+    
+    private func storeUserInformation(imageURL: URL) {
+        guard let uid = user?.uid else { return }
+        
+        let data = ["name": name, "email": email, "username": username, "uid": uid, "imageURL": imageURL.absoluteString]
+        
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .setData(data) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+            }
+    }
+    
+    func clearInput() {
+        name = ""
+        email = ""
+        password = ""
+        username = ""
+        image = nil
     }
 }

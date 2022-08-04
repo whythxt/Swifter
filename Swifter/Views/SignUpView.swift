@@ -10,15 +10,8 @@ import SwiftUI
 struct SignUpView: View {
     @EnvironmentObject var vm: AuthViewModel
     
-    @State private var name = ""
-    @State private var email = ""
-    @State private var password = ""
-    @State private var username = ""
-    
-    @State private var showingLogin = false
-    
     var disabled: Bool {
-        name.trimmingCharacters(in: .whitespaces).isEmpty || email.trimmingCharacters(in: .whitespaces).isEmpty || password.trimmingCharacters(in: .whitespaces).isEmpty || username.trimmingCharacters(in: .whitespaces).isEmpty ? true : false
+        vm.name.trimmingCharacters(in: .whitespaces).isEmpty || vm.email.trimmingCharacters(in: .whitespaces).isEmpty || vm.password.trimmingCharacters(in: .whitespaces).isEmpty || vm.username.trimmingCharacters(in: .whitespaces).isEmpty || vm.image == nil ? true : false
     }
     
     var body: some View {
@@ -32,23 +25,43 @@ struct SignUpView: View {
             Spacer()
             
             VStack(spacing: 20) {
-                TextField("Name", text: $name)
+                Button {
+                    vm.showingImagePicker.toggle()
+                } label: {
+                    VStack {
+                        if let image = vm.image {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 128, height: 128)
+                                .cornerRadius(64)
+                        } else {
+                            Image(systemName: "person.fill")
+                                .font(.system(size: 64))
+                                .padding()
+                                .foregroundColor(Color(.label))
+                        }
+                    }
+                }
+                .overlay(RoundedRectangle(cornerRadius: 64).stroke(Color(.label)))
+                
+                TextField("Name", text: $vm.name)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.words)
                 Divider()
                 
-                TextField("Email", text: $email)
+                TextField("Email", text: $vm.email)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                     .keyboardType(.emailAddress)
                 
                 Divider()
                 
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $vm.password)
                     .textInputAutocapitalization(.never)
                 Divider()
                 
-                TextField("Username", text: $username)
+                TextField("Username", text: $vm.username)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                 Divider()
@@ -56,8 +69,7 @@ struct SignUpView: View {
             .padding(.horizontal, 30)
             
             Button {
-                vm.signup(name: name, email: email, password: password, username: username)
-                clearInput()
+                vm.signup(name: vm.name, email: vm.email, password: vm.password, username: vm.username)
             } label: {
                 Text("Create account")
                     .font(.headline)
@@ -76,30 +88,30 @@ struct SignUpView: View {
                     .foregroundColor(.secondary)
                 
                 Button("Log in") {
-                    showingLogin.toggle()
+                    vm.showingLogin.toggle()
                 }
                 .foregroundColor(.orange)
             }
             .font(.subheadline)
         }
-        .alert(vm.errorMessage, isPresented: $vm.showingError) {
-            Button("OK", role: .cancel) { }
+        .onAppear {
+            vm.clearInput()
         }
-        .fullScreenCover(isPresented: $showingLogin) {
+        .sheet(isPresented: $vm.showingImagePicker) {
+            ImagePicker(image: $vm.image)
+        }
+        .alert(vm.errorMessage, isPresented: $vm.showingError) {
+            Button("OK", role: .cancel) { vm.clearInput() }
+        }
+        .fullScreenCover(isPresented: $vm.showingLogin) {
             LoginView()
         }
-    }
-    
-    func clearInput() {
-        name = ""
-        email = ""
-        password = ""
-        username = ""
     }
 }
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
+            .environmentObject(AuthViewModel())
     }
 }

@@ -12,11 +12,8 @@ struct LoginView: View {
     
     @EnvironmentObject var vm: AuthViewModel
     
-    @State private var email = ""
-    @State private var password = ""
-    
     var disabled: Bool {
-        email.trimmingCharacters(in: .whitespaces).isEmpty || password.trimmingCharacters(in: .whitespaces).isEmpty ? true : false
+        vm.email.trimmingCharacters(in: .whitespaces).isEmpty || vm.password.trimmingCharacters(in: .whitespaces).isEmpty ? true : false
     }
     
     var body: some View {
@@ -45,22 +42,21 @@ struct LoginView: View {
             Spacer()
             
             VStack(spacing: 20) {
-                TextField("Email", text: $email)
+                TextField("Email", text: $vm.email)
                     .disableAutocorrection(true)
                     .textInputAutocapitalization(.never)
                     .keyboardType(.emailAddress)
                 
                 Divider()
                 
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $vm.password)
                     .textInputAutocapitalization(.never)
                 Divider()
             }
             .padding(.horizontal, 30)
             
             Button {
-                vm.login(email: email, password: password)
-                clearInput()
+                vm.login(email: vm.email, password: vm.password)
             } label: {
                 Text("Log in")
                     .font(.headline)
@@ -75,18 +71,14 @@ struct LoginView: View {
             Spacer()
         }
         .alert(vm.errorMessage, isPresented: $vm.showingError) {
-            Button("OK", role: .cancel) { }
+            Button("OK", role: .cancel) { vm.clearInput() }
         }
-    }
-    
-    func clearInput() {
-        email = ""
-        password = ""
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(AuthViewModel())
     }
 }

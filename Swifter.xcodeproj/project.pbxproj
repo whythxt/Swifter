@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB17975E289BBE130020CE87 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB17975D289BBE130020CE87 /* AuthViewModel.swift */; };
+		AB179761289BDC480020CE87 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB179760289BDC480020CE87 /* ImagePicker.swift */; };
 		AB76F777289ACD9200822304 /* SwifterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB76F776289ACD9200822304 /* SwifterApp.swift */; };
 		AB76F77B289ACD9400822304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB76F77A289ACD9400822304 /* Assets.xcassets */; };
 		AB76F77E289ACD9400822304 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB76F77D289ACD9400822304 /* Preview Assets.xcassets */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		AB17975D289BBE130020CE87 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		AB179760289BDC480020CE87 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		AB76F773289ACD9200822304 /* Swifter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swifter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB76F776289ACD9200822304 /* SwifterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwifterApp.swift; sourceTree = "<group>"; };
 		AB76F77A289ACD9400822304 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		AB179764289BE18B0020CE87 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AB179760289BDC480020CE87 /* ImagePicker.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		AB76F76A289ACD9200822304 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 			children = (
 				AB76F776289ACD9200822304 /* SwifterApp.swift */,
 				AB76F78C289ACDB200822304 /* Extensions */,
+				AB179764289BE18B0020CE87 /* Utilities */,
 				AB76F784289ACDB200822304 /* Components */,
 				AB76F78E289ACDB200822304 /* Views */,
 				AB17975F289BBE160020CE87 /* ViewModels */,
@@ -247,6 +258,7 @@
 				AB17975E289BBE130020CE87 /* AuthViewModel.swift in Sources */,
 				AB76F79B289ACDB200822304 /* SearchBar.swift in Sources */,
 				AB76F7A2289ACDB200822304 /* HomeView.swift in Sources */,
+				AB179761289BDC480020CE87 /* ImagePicker.swift in Sources */,
 				AB76F7A1289ACDB200822304 /* ProfileView.swift in Sources */,
 				AB76F797289ACDB200822304 /* NewTweetButton.swift in Sources */,
 				AB76F79E289ACDB200822304 /* View.swift in Sources */,
