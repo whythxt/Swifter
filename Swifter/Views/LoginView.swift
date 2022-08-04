@@ -46,11 +46,14 @@ struct LoginView: View {
             
             VStack(spacing: 20) {
                 TextField("Email", text: $email)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                     .keyboardType(.emailAddress)
                 
                 Divider()
                 
                 SecureField("Password", text: $password)
+                    .textInputAutocapitalization(.never)
                 Divider()
             }
             .padding(.horizontal, 30)
@@ -71,6 +74,9 @@ struct LoginView: View {
         
             Spacer()
         }
+        .alert(vm.errorMessage, isPresented: $vm.showingError) {
+            Button("OK", role: .cancel) { }
+        }
     }
     
     func clearInput() {
@@ -82,6 +88,5 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-            .environmentObject(AuthViewModel())
     }
 }

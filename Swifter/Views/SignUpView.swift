@@ -33,17 +33,24 @@ struct SignUpView: View {
             
             VStack(spacing: 20) {
                 TextField("Name", text: $name)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.words)
                 Divider()
                 
                 TextField("Email", text: $email)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                     .keyboardType(.emailAddress)
                 
                 Divider()
                 
                 SecureField("Password", text: $password)
+                    .textInputAutocapitalization(.never)
                 Divider()
                 
                 TextField("Username", text: $username)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                 Divider()
             }
             .padding(.horizontal, 30)
@@ -75,6 +82,9 @@ struct SignUpView: View {
             }
             .font(.subheadline)
         }
+        .alert(vm.errorMessage, isPresented: $vm.showingError) {
+            Button("OK", role: .cancel) { }
+        }
         .fullScreenCover(isPresented: $showingLogin) {
             LoginView()
         }
@@ -91,6 +101,5 @@ struct SignUpView: View {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
-            .environmentObject(AuthViewModel())
     }
 }

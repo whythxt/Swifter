@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SideMenu: View {
+    @EnvironmentObject var vm: AuthViewModel
+    
     @Binding var showingMenu: Bool
     
     var body: some View {
@@ -72,7 +74,7 @@ struct SideMenu: View {
                     
                     Divider()
                     
-                    SideButton(title: "Twitter for Professionals", image: "airplane")
+                    SideButton(title: "Swifter for Professionals", image: "airplane")
                         .padding()
                         .padding(.leading)
                     
@@ -83,9 +85,10 @@ struct SideMenu: View {
                             
                         }
                         
-                        Button("Help Center") {
-                            
+                        Button("Log out") {
+                            vm.logOut()
                         }
+                        .foregroundColor(.red)
                     }
                     .padding()
                     .padding(.leading)
