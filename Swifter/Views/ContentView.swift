@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var vm: AuthViewModel
+    
     @State private var showingMenu = false
     @State private var showingSheet = false
     @State private var currentTab = "house"
@@ -20,6 +22,9 @@ struct ContentView: View {
     var body: some View {
         let sideBarWidth = getRect().width - 90
         
+        if vm.user == nil {
+            SignUpView()
+        } else {
             NavigationView {
                 HStack(spacing: 0) {
                     SideMenu(showingMenu: $showingMenu)
@@ -99,6 +104,8 @@ struct ContentView: View {
             .onChange(of: gestureOffset) { newValue in
                 onChange()
             }
+        }
+        
     }
     
     func onChange() {
@@ -160,5 +167,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(AuthViewModel())
     }
 }

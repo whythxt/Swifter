@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB17975E289BBE130020CE87 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB17975D289BBE130020CE87 /* AuthViewModel.swift */; };
 		AB76F777289ACD9200822304 /* SwifterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB76F776289ACD9200822304 /* SwifterApp.swift */; };
 		AB76F77B289ACD9400822304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB76F77A289ACD9400822304 /* Assets.xcassets */; };
 		AB76F77E289ACD9400822304 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB76F77D289ACD9400822304 /* Preview Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AB17975D289BBE130020CE87 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		AB76F773289ACD9200822304 /* Swifter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swifter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB76F776289ACD9200822304 /* SwifterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwifterApp.swift; sourceTree = "<group>"; };
 		AB76F77A289ACD9400822304 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB17975F289BBE160020CE87 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AB17975D289BBE130020CE87 /* AuthViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		AB76F76A289ACD9200822304 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +109,7 @@
 				AB76F78C289ACDB200822304 /* Extensions */,
 				AB76F784289ACDB200822304 /* Components */,
 				AB76F78E289ACDB200822304 /* Views */,
+				AB17975F289BBE160020CE87 /* ViewModels */,
 				AB76F77A289ACD9400822304 /* Assets.xcassets */,
 				AB76F7AB289B1CF900822304 /* GoogleService-Info.plist */,
 				AB76F77C289ACD9400822304 /* Preview Content */,
@@ -233,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB17975E289BBE130020CE87 /* AuthViewModel.swift in Sources */,
 				AB76F79B289ACDB200822304 /* SearchBar.swift in Sources */,
 				AB76F7A2289ACDB200822304 /* HomeView.swift in Sources */,
 				AB76F7A1289ACDB200822304 /* ProfileView.swift in Sources */,

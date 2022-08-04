@@ -10,6 +10,8 @@ import SwiftUI
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
     
+    @EnvironmentObject var vm: AuthViewModel
+    
     @State private var email = ""
     @State private var password = ""
     
@@ -54,7 +56,8 @@ struct LoginView: View {
             .padding(.horizontal, 30)
             
             Button {
-                
+                vm.login(email: email, password: password)
+                clearInput()
             } label: {
                 Text("Log in")
                     .font(.headline)
@@ -79,5 +82,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(AuthViewModel())
     }
 }

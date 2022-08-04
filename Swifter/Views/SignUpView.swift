@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @EnvironmentObject var vm: AuthViewModel
+    
     @State private var name = ""
     @State private var email = ""
     @State private var password = ""
@@ -47,6 +49,7 @@ struct SignUpView: View {
             .padding(.horizontal, 30)
             
             Button {
+                vm.signup(name: name, email: email, password: password, username: username)
                 clearInput()
             } label: {
                 Text("Create account")
@@ -88,5 +91,6 @@ struct SignUpView: View {
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
+            .environmentObject(AuthViewModel())
     }
 }

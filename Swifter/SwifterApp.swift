@@ -16,7 +16,8 @@ struct SwifterApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SignUpView()
+            ContentView()
+                .environmentObject(AuthViewModel())
         }
     }
 }
