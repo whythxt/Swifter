@@ -1,6 +1,6 @@
 //
 //  NewTweetButton.swift
-//  TwitterClone
+//  Swifter
 //
 //  Created by Yurii on 03.08.2022.
 //

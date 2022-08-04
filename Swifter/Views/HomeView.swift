@@ -1,6 +1,6 @@
 //
 //  HomeView.swift
-//  TwitterClone
+//  Swifter
 //
 //  Created by Yurii on 28.07.2022.
 //

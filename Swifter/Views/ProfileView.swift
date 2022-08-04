@@ -1,6 +1,6 @@
 //
 //  ProfileView.swift
-//  TwitterClone
+//  Swifter
 //
 //  Created by Yurii on 02.08.2022.
 //
