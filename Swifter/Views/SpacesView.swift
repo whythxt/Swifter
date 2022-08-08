@@ -8,21 +8,13 @@
 import SwiftUI
 
 struct SpacesView: View {
-    @State private var showingMenu = false
+    @Binding var showingMenu: Bool
     
     var body: some View {
         VStack {
             VStack(spacing: 0) {
                 HStack {
-                    Button {
-                        withAnimation { showingMenu.toggle() }
-                    } label: {
-                        Image(systemName: "person.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 25, height: 25)
-                            .clipShape(Circle())
-                    }
+                    NavBarPic(showingMenu: $showingMenu)
                     
                     Spacer()
                 }
@@ -45,6 +37,6 @@ struct SpacesView: View {
 
 struct SpacesView_Previews: PreviewProvider {
     static var previews: some View {
-        SpacesView()
+        SpacesView(showingMenu: .constant(false))
     }
 }

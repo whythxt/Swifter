@@ -8,22 +8,14 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State private var showingMenu = false
+    @Binding var showingMenu: Bool
     @State private var text = ""
     
     var body: some View {
         VStack(alignment: .leading) {
             VStack(spacing: 0) {
                 HStack {
-                    Button {
-                        withAnimation { showingMenu.toggle() }
-                    } label: {
-                        Image(systemName: "person.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 25, height: 25)
-                            .clipShape(Circle())
-                    }
+                    NavBarPic(showingMenu: $showingMenu)
                     
                     Spacer()
                 }
@@ -40,7 +32,7 @@ struct SearchView: View {
             ScrollView {
                 LazyVStack(alignment: .leading) {
                     ForEach(1...10, id: \.self) { _ in
-                        SearchRowView()
+                        SearchRow()
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 5)
@@ -55,6 +47,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(showingMenu: .constant(false))
     }
 }

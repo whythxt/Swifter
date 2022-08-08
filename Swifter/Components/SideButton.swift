@@ -8,27 +8,31 @@
 import SwiftUI
 
 struct SideButton: View {
+    @EnvironmentObject var vm: AuthViewModel
+    
     let title: String
     let image: String
     
     var body: some View {
-        NavigationLink {
-            switch title {
-            case "Profile": ProfileView()
-            default: Text(title)
+        if let user = vm.currentUser {
+            NavigationLink {
+                switch title {
+                case "Profile": ProfileView(user: user)
+                default: Text(title)
+                }
+            } label: {
+                HStack(spacing: 15) {
+                    Image(systemName: image)
+                        .resizable()
+                        .renderingMode(.template)
+                        .scaledToFit()
+                        .frame(width: 22, height: 22)
+                    
+                    Text(title)
+                }
+                .foregroundColor(.primary)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-        } label: {
-            HStack(spacing: 15) {
-                Image(systemName: image)
-                    .resizable()
-                    .renderingMode(.template)
-                    .scaledToFit()
-                    .frame(width: 22, height: 22)
-                
-                Text(title)
-            }
-            .foregroundColor(.primary)
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
@@ -36,5 +40,6 @@ struct SideButton: View {
 struct TabButton_Previews: PreviewProvider {
     static var previews: some View {
         SideButton(title: "Profile", image: "person")
+            .environmentObject(AuthViewModel())
     }
 }

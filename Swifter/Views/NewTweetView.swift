@@ -10,6 +10,8 @@ import SwiftUI
 struct NewTweetView: View {
     @Environment(\.dismiss) var dismiss
     
+    @EnvironmentObject var vm: AuthViewModel
+    
     @State private var text = ""
     
     var body: some View {
@@ -40,8 +42,14 @@ struct NewTweetView: View {
             }
             
             HStack(alignment: .top) {
-                Circle()
-                    .frame(width: 30, height: 40)
+                AsyncImage(url: URL(string: vm.currentUser?.imageURL ?? "")) { image in
+                    image.resizable()
+                } placeholder: {
+                    Image(systemName: "person.fill")
+                }
+                .scaledToFill()
+                .frame(width: 35, height: 35)
+                .clipShape(Circle())
                 
                 TweetField(text: $text)
             }
@@ -55,5 +63,6 @@ struct NewTweetView: View {
 struct NewTweetView_Previews: PreviewProvider {
     static var previews: some View {
         NewTweetView()
+            .environmentObject(AuthViewModel())
     }
 }

@@ -22,7 +22,7 @@ struct ContentView: View {
     var body: some View {
         let sideBarWidth = getRect().width - 90
         
-        if vm.user == nil {
+        if vm.currentUser == nil {
             SignUpView()
         } else {
             NavigationView {
@@ -35,19 +35,19 @@ struct ContentView: View {
                                 .navigationBarHidden(true)
                                 .tag("house")
                             
-                            SearchView()
+                            SearchView(showingMenu: $showingMenu)
                                 .navigationBarHidden(true)
                                 .tag("magnifyingglass")
                             
-                            SpacesView()
+                            SpacesView(showingMenu: $showingMenu)
                                 .navigationBarHidden(true)
                                 .tag("mic")
                             
-                            NotificationsView()
+                            NotificationsView(showingMenu: $showingMenu)
                                 .navigationBarHidden(true)
                                 .tag("bell")
                             
-                            MessagesView()
+                            MessagesView(showingMenu: $showingMenu)
                                 .navigationBarHidden(true)
                                 .tag("envelope")
                         }

@@ -24,6 +24,8 @@ struct ProfileView: View {
     
     @State private var selectedFilter: Filter = .tweets
     
+    let user: User
+    
     var body: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: .bottomLeading) {
@@ -38,9 +40,16 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                     }
                     
-                    Circle()
-                        .frame(width: 70, height: 70)
-                        .offset(x: 10, y: 35)
+                    AsyncImage(url: URL(string: user.imageURL)) { image in
+                        image.resizable()
+                    } placeholder: {
+                        Circle()
+                    }
+                    .scaledToFill()
+                    .frame(width: 70, height: 70)
+                    .clipShape(Circle())
+                    .offset(x: 10, y: 35)
+                    
                 }
             }
             .frame(height: 90)
@@ -62,11 +71,11 @@ struct ProfileView: View {
             .foregroundColor(.primary)
             
             VStack(alignment: .leading, spacing: 3) {
-                Text("whythat")
+                Text(user.name)
                     .font(.title2)
                     .bold()
                 
-                Text("@whythxt")
+                Text("@\(user.username)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
@@ -125,7 +134,7 @@ struct ProfileView: View {
             ScrollView {
                 LazyVStack {
                     ForEach(0...10, id: \.self) {_ in 
-                        TweetRowView()
+                        TweetRow()
                     }
                 }
             }
@@ -138,6 +147,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(user: User.example)
+            .environmentObject(AuthViewModel())
     }
 }

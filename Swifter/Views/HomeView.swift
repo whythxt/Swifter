@@ -15,15 +15,7 @@ struct HomeView: View {
         VStack {
             VStack(spacing: 0) {
                 HStack {
-                    Button {
-                        withAnimation { showingMenu.toggle() }
-                    } label: {
-                        Image(systemName: "person.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 25, height: 25)
-                            .clipShape(Circle())
-                    }
+                    NavBarPic(showingMenu: $showingMenu)
                     
                     Spacer()
                     
@@ -56,7 +48,7 @@ struct HomeView: View {
                 ScrollView {
                     LazyVStack {
                         ForEach(1...20, id: \.self) { _ in
-                            TweetRowView()
+                            TweetRow()
                         }
                     }
                 }

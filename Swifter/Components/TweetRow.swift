@@ -1,5 +1,5 @@
 //
-//  TweetRowView.swift
+//  TweetRow.swift
 //  Swifter
 //
 //  Created by Yurii on 02.08.2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TweetRowView: View {
+struct TweetRow: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top, spacing: 10) {
@@ -71,6 +71,6 @@ struct TweetRowView: View {
 
 struct TweetRowView_Previews: PreviewProvider {
     static var previews: some View {
-        TweetRowView()
+        TweetRow()
     }
 }

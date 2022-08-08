@@ -11,6 +11,7 @@ import SwiftUI
 
 class AuthViewModel: ObservableObject {
     @Published var user: FirebaseAuth.User?
+    @Published var currentUser: User?
     
     @Published var name = ""
     @Published var email = ""
@@ -25,8 +26,11 @@ class AuthViewModel: ObservableObject {
     @Published var showingImagePicker = false
     @Published var image: UIImage?
     
+    private let service = UserService()
+    
     init() {
         self.user = Auth.auth().currentUser
+        self.fetchUser()
     }
     
     func signup(name: String, email: String, password: String, username: String) {
@@ -105,6 +109,14 @@ class AuthViewModel: ObservableObject {
                     return
                 }
             }
+    }
+    
+    func fetchUser() {
+        guard let uid = self.user?.uid else { return }
+        
+        service.fetchUser(uid: uid) { user in
+            self.currentUser = user
+        }
     }
     
     func clearInput() {
