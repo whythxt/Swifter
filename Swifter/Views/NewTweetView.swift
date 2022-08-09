@@ -10,9 +10,8 @@ import SwiftUI
 struct NewTweetView: View {
     @Environment(\.dismiss) var dismiss
     
+    @ObservedObject var tm = NewTweetViewModel()
     @EnvironmentObject var vm: AuthViewModel
-    
-    @State private var text = ""
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -27,17 +26,19 @@ struct NewTweetView: View {
                 Spacer()
                 
                 Button {
-                    
+                    tm.tweet(caption: tm.text)
+                    dismiss()
                 } label: {
                     Text("Tweet")
                         .font(.callout)
                         .bold()
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
-                        .background(.orange)
+                        .background(tm.disabled ? .gray : .orange)
                         .foregroundColor(.white)
                         .clipShape(Capsule())
                 }
+                .disabled(tm.disabled)
 
             }
             
@@ -51,7 +52,7 @@ struct NewTweetView: View {
                 .frame(width: 35, height: 35)
                 .clipShape(Circle())
                 
-                TweetField(text: $text)
+                TweetField(text: $tm.text)
             }
             
             Spacer()

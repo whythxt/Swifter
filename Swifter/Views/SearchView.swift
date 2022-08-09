@@ -32,7 +32,7 @@ struct SearchView: View {
             
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    ForEach(vm.searchUsers, id: \.id) { user in
+                    ForEach(vm.searchUsers) { user in
                         SearchRow(user: user)
                     }
                     .padding(.horizontal)

@@ -25,6 +25,7 @@ struct TweetField: View {
             }
             
             TextEditor(text: $text)
+                .textInputAutocapitalization(.never)
                 .accentColor(.orange)
                 .padding(4)
         }

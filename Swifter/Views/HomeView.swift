@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var vm = HomeViewModel()
+    
     @Binding var showingMenu: Bool
     @Binding var showingSheet: Bool
     
@@ -47,8 +49,8 @@ struct HomeView: View {
             ZStack(alignment: .bottomTrailing) {
                 ScrollView {
                     LazyVStack {
-                        ForEach(1...20, id: \.self) { _ in
-                            TweetRow()
+                        ForEach(vm.tweets) { tweet in
+                            TweetRow(tweet: tweet)
                         }
                     }
                 }

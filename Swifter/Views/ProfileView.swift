@@ -134,7 +134,7 @@ struct ProfileView: View {
             ScrollView {
                 LazyVStack {
                     ForEach(0...10, id: \.self) {_ in 
-                        TweetRow()
+                        TweetRow(tweet: Tweet.example)
                     }
                 }
             }

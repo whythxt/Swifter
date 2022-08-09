@@ -8,60 +8,69 @@
 import SwiftUI
 
 struct TweetRow: View {
+    let tweet: Tweet
+    
     var body: some View {
         VStack(alignment: .leading) {
-            HStack(alignment: .top, spacing: 10) {
-                Circle()
+            if let user = tweet.user {
+                HStack(alignment: .top, spacing: 10) {
+                    AsyncImage(url: URL(string: user.imageURL)) { image in
+                        image.resizable()
+                    } placeholder: {
+                        Circle()
+                    }
+                    .scaledToFill()
                     .frame(width: 56, height: 56)
-                    .foregroundColor(.black)
-                
-                VStack(alignment: .leading, spacing: 3) {
-                    HStack {
-                        Text("whythat")
-                            .font(.headline)
-                        
-                        Text("@whythxt")
-                            .foregroundColor(.secondary)
-                            .font(.callout)
-                        
-                        Text("· 4h")
-                            .foregroundColor(.secondary)
-                            .font(.callout)
-                    }
+                    .clipShape(Circle())
                     
-                    Text("I'm dog backwards")
-                        .multilineTextAlignment(.leading)
-                    
-                    HStack(spacing: 50) {
-                        Button {
+                    VStack(alignment: .leading, spacing: 3) {
+                        HStack {
+                            Text(user.name)
+                                .font(.headline)
                             
-                        } label: {
-                            Image(systemName: "bubble.left")
+                            Text("@\(user.username)")
+                                .foregroundColor(.secondary)
+                                .font(.callout)
+                            
+                            Text("· 4h")
+                                .foregroundColor(.secondary)
+                                .font(.callout)
                         }
                         
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "arrow.2.squarepath")
-                        }
+                        Text(tweet.caption)
+                            .multilineTextAlignment(.leading)
                         
-                        Button {
+                        HStack(spacing: 50) {
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "bubble.left")
+                            }
                             
-                        } label: {
-                            Image(systemName: "heart")
-                        }
-                        
-                        Button {
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "arrow.2.squarepath")
+                            }
                             
-                        } label: {
-                            Image(systemName: "square.and.arrow.up")
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "heart")
+                            }
+                            
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "square.and.arrow.up")
+                            }
                         }
+                        .padding(.vertical, 5)
+                        .foregroundColor(.secondary)
                     }
-                    .padding(.vertical, 5)
-                    .foregroundColor(.secondary)
                 }
             }
-    
+            
             Divider()
                 .padding(.vertical, 3)
         }
@@ -71,6 +80,6 @@ struct TweetRow: View {
 
 struct TweetRowView_Previews: PreviewProvider {
     static var previews: some View {
-        TweetRow()
+        TweetRow(tweet: Tweet.example)
     }
 }

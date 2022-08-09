@@ -12,6 +12,8 @@ class SearchViewModel: ObservableObject {
     @Published var users = [User]()
     @Published var text = ""
     
+    let service = UserService()
+    
     var searchUsers: [User] {
         if text.isEmpty {
             return users
@@ -19,9 +21,6 @@ class SearchViewModel: ObservableObject {
             return users.filter { $0.username.lowercased().contains(text.lowercased()) || $0.name.lowercased().contains(text.lowercased()) }
         }
     }
-    
-    
-    let service = UserService()
     
     init() {
         fetchUsers()
