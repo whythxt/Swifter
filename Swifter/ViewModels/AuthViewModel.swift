@@ -58,6 +58,7 @@ class AuthViewModel: ObservableObject {
             guard let user = result?.user else { return }
             
             self.user = user
+            self.fetchUser()
             self.clearInput()
         }
     }
@@ -66,6 +67,7 @@ class AuthViewModel: ObservableObject {
         do {
             try Auth.auth().signOut()
             user = nil
+            currentUser = nil
         } catch {
             print(error.localizedDescription)
         }
@@ -109,6 +111,8 @@ class AuthViewModel: ObservableObject {
                     return
                 }
             }
+        
+        fetchUser()
     }
     
     func fetchUser() {

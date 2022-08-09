@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct SearchView: View {
+    @ObservedObject var vm = SearchViewModel()
+    
     @Binding var showingMenu: Bool
-    @State private var text = ""
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,13 +27,13 @@ struct SearchView: View {
                 Divider()
             }
             .overlay(
-                SearchBar(text: $text)
+                SearchBar(text: $vm.text)
             )
             
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    ForEach(1...10, id: \.self) { _ in
-                        SearchRow()
+                    ForEach(vm.searchUsers, id: \.id) { user in
+                        SearchRow(user: user)
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 5)
