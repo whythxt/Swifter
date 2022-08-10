@@ -137,7 +137,7 @@ struct ProfileView: View {
             
             ScrollView {
                 LazyVStack {
-                    ForEach(vm.tweets) { tweet in
+                    ForEach(vm.tweets(filter: selectedFilter)) { tweet in
                         TweetRow(tweet: tweet)
                     }
                 }

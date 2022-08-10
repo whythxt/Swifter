@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct TweetRow: View {
-    let tweet: Tweet
+    @ObservedObject var vm: TweetRowViewModel
+    
+    init(tweet: Tweet) {
+        self.vm = TweetRowViewModel(tweet: tweet)
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let user = tweet.user {
+            if let user = vm.tweet.user {
                 HStack(alignment: .top, spacing: 10) {
                     NavigationLink {
                         ProfileView(user: user)
@@ -41,7 +45,7 @@ struct TweetRow: View {
                                 .font(.callout)
                         }
                         
-                        Text(tweet.caption)
+                        Text(vm.tweet.caption)
                             .multilineTextAlignment(.leading)
                         
                         HStack(spacing: 50) {
@@ -58,9 +62,10 @@ struct TweetRow: View {
                             }
                             
                             Button {
-                                
+                                vm.liked ? vm.unlike() : vm.like()
                             } label: {
-                                Image(systemName: "heart")
+                                Image(systemName: vm.liked ? "heart.fill" : "heart")
+                                    .foregroundColor(vm.liked ? .orange : .gray)
                             }
                             
                             Button {

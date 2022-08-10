@@ -22,7 +22,7 @@ struct ContentView: View {
     var body: some View {
         let sideBarWidth = getRect().width - 90
         
-        if vm.currentUser == nil {
+        if vm.user == nil {
             SignUpView()
         } else {
             NavigationView {

@@ -14,7 +14,9 @@ struct Tweet: Codable, Identifiable {
     let timestamp: Timestamp
     let uid: String
     var likes: Int
+    
     var user: User?
+    var isLiked: Bool? = false
     
     static let example = Tweet(caption: "test tweet", timestamp: Timestamp(date: Date.now), uid: "uid", likes: 0)
 }
