@@ -22,9 +22,13 @@ enum Filter: Int, CaseIterable {
 struct ProfileView: View {
     @Environment(\.dismiss) var dismiss
     
+    @ObservedObject var vm: ProfileViewModel
+    
     @State private var selectedFilter: Filter = .tweets
     
-    let user: User
+    init(user: User) {
+        self.vm = ProfileViewModel(user: user)
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -40,7 +44,7 @@ struct ProfileView: View {
                             .foregroundColor(.white)
                     }
                     
-                    AsyncImage(url: URL(string: user.imageURL)) { image in
+                    AsyncImage(url: URL(string: vm.user.imageURL)) { image in
                         image.resizable()
                     } placeholder: {
                         Circle()
@@ -71,11 +75,11 @@ struct ProfileView: View {
             .foregroundColor(.primary)
             
             VStack(alignment: .leading, spacing: 3) {
-                Text(user.name)
+                Text(vm.user.name)
                     .font(.title2)
                     .bold()
                 
-                Text("@\(user.username)")
+                Text("@\(vm.user.username)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
@@ -133,8 +137,8 @@ struct ProfileView: View {
             
             ScrollView {
                 LazyVStack {
-                    ForEach(0...10, id: \.self) {_ in 
-                        TweetRow(tweet: Tweet.example)
+                    ForEach(vm.tweets) { tweet in
+                        TweetRow(tweet: tweet)
                     }
                 }
             }

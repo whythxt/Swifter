@@ -14,14 +14,18 @@ struct TweetRow: View {
         VStack(alignment: .leading) {
             if let user = tweet.user {
                 HStack(alignment: .top, spacing: 10) {
-                    AsyncImage(url: URL(string: user.imageURL)) { image in
-                        image.resizable()
-                    } placeholder: {
-                        Circle()
+                    NavigationLink {
+                        ProfileView(user: user)
+                    } label: {
+                        AsyncImage(url: URL(string: user.imageURL)) { image in
+                            image.resizable()
+                        } placeholder: {
+                            Circle()
+                        }
+                        .scaledToFill()
+                        .frame(width: 56, height: 56)
+                        .clipShape(Circle())
                     }
-                    .scaledToFill()
-                    .frame(width: 56, height: 56)
-                    .clipShape(Circle())
                     
                     VStack(alignment: .leading, spacing: 3) {
                         HStack {

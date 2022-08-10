@@ -12,7 +12,7 @@ class SearchViewModel: ObservableObject {
     @Published var users = [User]()
     @Published var text = ""
     
-    let service = UserService()
+    private let service = UserService()
     
     var searchUsers: [User] {
         if text.isEmpty {

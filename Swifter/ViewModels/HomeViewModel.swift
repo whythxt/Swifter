@@ -10,8 +10,8 @@ import Foundation
 class HomeViewModel: ObservableObject {
     @Published var tweets = [Tweet]()
     
-    let service = TweetService()
-    let uService = UserService()
+    private let service = TweetService()
+    private let uService = UserService()
     
     init() {
         fetchTweets()

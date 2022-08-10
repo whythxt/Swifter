@@ -10,6 +10,8 @@ import FirebaseFirestoreSwift
 import Foundation
 
 struct UserService {
+    // Fetch current user
+    
     func fetchUser(uid: String, completion: @escaping (User) -> Void) {
         Firestore.firestore()
             .collection("users")
@@ -20,6 +22,8 @@ struct UserService {
                 completion(user)
             }
     }
+    
+    // Fetch all users for SearchView
     
     func fetchUserList(completion: @escaping ([User]) -> Void) {
         Firestore.firestore()

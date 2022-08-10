@@ -10,7 +10,7 @@ import Foundation
 class NewTweetViewModel: ObservableObject {
     @Published var text = ""
     
-    let service = TweetService()
+    private let service = TweetService()
     
     var disabled: Bool {
         text.trimmingCharacters(in: .whitespaces).isEmpty ? true : false
